@@ -35,6 +35,7 @@ def decline_request(request):
             return redirect('/users_requests/', permanent=True)
 
 
+
 def set_mark(request,  id=1):
     if request.user.is_authenticated:
         template_name = 'pageAttractionAP.html'
