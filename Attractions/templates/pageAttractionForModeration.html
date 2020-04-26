@@ -13,10 +13,14 @@
 {% block function %}
 
 {% csrf_token %}
-<form action="/example/">
+<form action="/accept_request/" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="accept_id" value="{{ attraction.id }}">
     <button type="submit" class="btn btn-primary">Принять</button>
 </form>
-<form action="/example/">
+<form action="/decline_request/" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="decline_id" value="{{ attraction.id }}">
     <button type="submit" class="btn btn-danger">Отклонить</button>
 </form>
 
