@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from Attractions import views as atrviews
 
+
 extrapatternsRequests = [
                             re_path(r'^page/(?P<page_number>\d+)/$', views.page_users_request),
                             re_path('', views.page_users_request),

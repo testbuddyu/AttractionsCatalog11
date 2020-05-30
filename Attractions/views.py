@@ -4,17 +4,21 @@ from django.contrib.sessions.models import Session
 
 
 def page_attraction(request, id=1):
+    atr = Attractions.objects.get(id=id)
+    photos = Attachment.objects.all().filter(id_Attraction_id=id)
     if request.user.is_authenticated:
-        return render(request, "pageAttractionAP.html", {'attraction': Attractions.objects.get(id=id)})
-    return render(request, "pageAttractionAnonymous.html", {'attraction': Attractions.objects.get(id=id)})
+        return render(request, "pageAttractionAP.html", {'attraction': atr, 'photos': photos})
+    return render(request, "pageAttractionAnonymous.html", {'attraction': atr, 'photos': photos})
 
 
 def page_attraction_moderation(request, id=1):
+    atr = Attractions.objects.get(id=id)
+    photos = Attachment.objects.all().filter(id_Attraction_id=id)
     if request.user.is_authenticated:
         session = Session.objects.get(session_key=request.session.session_key)
         uid = session.get_decoded().get('_auth_user_id')
         if User.objects.get(id=uid).is_moderator:
-            return render(request, "pageAttractionForModeration.html", {'attraction': Attractions.objects.get(id=id)})
+            return render(request, "pageAttractionForModeration.html", {'attraction': atr, 'photos': photos})
 
 
 def accept_request(request):
@@ -35,15 +39,13 @@ def decline_request(request):
             return redirect('/users_requests/', permanent=True)
 
 
-
-def set_mark(request,  id=1):
+def set_mark(request, id=1):
     if request.user.is_authenticated:
-        template_name = 'pageAttractionAP.html'
         session = Session.objects.get(session_key=request.session.session_key)
         uid = session.get_decoded().get('_auth_user_id')
         if request.method == 'POST':
             set_mark_atr_id = request.POST.get('set_mark_atr_id', '')
             val = request.POST.get('rating', '')
-            defaults = {'value':val}
+            defaults = {'value': val}
             Mark.objects.update_or_create(id_user_id=uid, id_Attraction_id=set_mark_atr_id, defaults=defaults)
-            return render(request, template_name, {'attraction': Attractions.objects.get(id=id)})
+            return redirect('/attraction/'+str(id)+'/', permanent=True)

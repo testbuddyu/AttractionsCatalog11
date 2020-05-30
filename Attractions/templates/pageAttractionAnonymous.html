@@ -8,7 +8,7 @@
     </div>
 </div>
 {% endblock navbar %}
-
+{% block avg_mark %}<h2>Средняя оценка: {{ attraction.count_avg_mark }}</h2>{% endblock avg_mark %}
 {% block function %}
     <h5>Чтобы поставить оценку, вам необходимо войти в систему</h5>
 {% endblock function %}

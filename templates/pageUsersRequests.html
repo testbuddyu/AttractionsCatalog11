@@ -10,10 +10,10 @@
 {% endblock navbar %}
 
 {% block content %}
-    <h5>Тут заявок: {{ attractions.count }}</h5>
+    <h5>Тут заявок: {{ atr_count }}</h5>
     {% for a in attractions %}
         <div class="card" style="width: 50rem;">
-            <img class="card-img-top" src="{{ a.photo.url }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ a.get_image_mainpage.url}}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ a.name }}</h5>
                 <p class="card-text">{{ a.descriptions }}</p>

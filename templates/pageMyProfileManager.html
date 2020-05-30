@@ -9,6 +9,12 @@
 </div>
 {% endblock navbar %}
 
+{% block user_info %}
+    <h2>Ваше имя пользователя: {{ user.nickname }}</h2>
+    <h2>Ваш адрес электронной почты: {{ user.email }}</h2>
+    <h2>Вы Модератор!</h2>
+{% endblock user_info %}
+
 {% block content %}
 <form action="/request">
     <button type="submit" class="btn btn-primary">Создать заявку</button>

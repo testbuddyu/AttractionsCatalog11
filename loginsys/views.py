@@ -17,6 +17,7 @@ def login(request):
             return redirect('/', permanent=True)
         else:
             args['login_error'] = "Пользователь не найден"
+            args['valid_error'] = 'Введен неверный логин или пароль.'
             return render(request, 'pageLogin.html', args)
 
     else:
@@ -33,9 +34,11 @@ def register(request):
     args['form'] = RegForm()
     if request.method == 'POST':
         newuser_form = RegForm(request.POST)
-        if newuser_form.is_valid():
+        agreement = bool(request.POST.get('personal_data_agreement', ''))
+        if newuser_form.is_valid() and agreement:
             newuser_form.save()
             return redirect('/auth/login')
         else:
             args['form'] = newuser_form
+            args['valid_error'] = 'При Регистрации произошла ошибка. Пожалуйста, проверьте правильность введенных данных.'
     return render(request, 'register.html', args)

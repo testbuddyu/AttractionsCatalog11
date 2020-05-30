@@ -24,13 +24,15 @@
     {% endblock navbar %}
 </nav>
 
-<h2>{{ attraction.descriptions }}</h2>
-<h2>{{ attraction.city_name }}</h2>
-<h2>{{ attraction.address }}</h2>
-<h2>{{ attraction.type }}</h2>
 <h2>{{ attraction.name }}</h2>
-<img src="{{ attraction.photo.url }}">
-
+<h2>{{ attraction.city_name }}</h2>
+<h2>{{ attraction.type }}</h2>
+<h2>{{ attraction.descriptions }}</h2>
+<h2>{{ attraction.address }}</h2>
+{% block avg_mark %}{% endblock avg_mark %}
+{% for p in photos %}
+<img src="{{ p.photo.url }}"><br>
+{% endfor %}
 
 
 {% block function %}{% endblock function %}

@@ -34,12 +34,8 @@
         </div>
         <div class="form-group">
             <label for="selectCity">Город</label>
-            <select class="form-control" id="selectCity" name="selectCity">
-                <option value="">---</option>
-                <option>Воронеж</option>
-                <option>Москва</option>
-                <option>Санкт-Петербург</option>
-            </select>
+            <input class="form-control" type="search" placeholder="Поиск" aria-label="Search" id="selectCity"
+               name="selectCity">
         </div>
         <div class="form-group">
             <label for="selectType">Тип Достопримечательности</label>
@@ -69,10 +65,10 @@
     {{ bad_result_search }}
     {% for a in attractions %}
         <div class="card" style="width: 50rem;">
-            <img class="card-img-top" src="{{ a.photo.url }}" alt="Card image cap">
+            <img class="card-img-top" src="{{ a.get_image_mainpage.url }}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ a.name }}</h5>
-                <p class="card-text">{{ a.descriptions }}</p>
+                <p class="card-text">{{  a.count_avg_mark }}</p>
                 <p class="card-text">{{ a.city_name }}</p>
                 <a href="/attraction/{{ a.id }}" class="btn btn-primary">Подробнее</a>
             </div>

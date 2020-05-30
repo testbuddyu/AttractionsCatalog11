@@ -13,8 +13,10 @@
     <div class="large-offset-3 large-6 columns">
         <form action="" enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            {{ form|crispy }}
+            {{ form1 | crispy}}
+            {{ form2 | crispy}}
             <button type="submit" class="btn btn-primary">Отправить заявку</button>
+            {{ valid_error }}
         </form>
     </div>
 {% endblock content %}

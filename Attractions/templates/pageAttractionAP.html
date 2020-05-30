@@ -9,9 +9,9 @@
     </div>
 </div>
 {% endblock navbar %}
-
+{% block avg_mark %}<h2>Средняя оценка: {{ attraction.count_avg_mark }}</h2>{% endblock avg_mark %}
 {% block function %}
-<form action="set_mark/" method="post">
+<form action="/attraction/{{ attraction.id }}/set_mark/" method="post">
     {% csrf_token %}
     <input type="hidden" name="set_mark_atr_id" value="{{ attraction.id }}">
     <div class="rating-area">

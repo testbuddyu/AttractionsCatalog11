@@ -9,7 +9,7 @@ class RegForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'nickname', 'password1', 'password2')
+        fields = ('email', 'nickname', 'password1', 'password2',)
 
 
 class LoginForm(forms.Form):

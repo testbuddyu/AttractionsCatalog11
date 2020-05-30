@@ -13,6 +13,7 @@ SECRET_KEY = '^)n5$hxy(fxhm5i9iv%y71fo_fub)b^$ed_-w9bz61k)y52&gd'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -27,7 +28,9 @@ INSTALLED_APPS = [
     'FirstPage',
     'crispy_forms',
     'loginsys',
-    'django_extensions'
+    'django_extensions',
+    'django_cleanup.apps.CleanupConfig',
+    'multiupload'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
